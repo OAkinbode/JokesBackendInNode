@@ -1,0 +1,17 @@
+{
+  "name": "jokesbackendinnode",
+  "version": "1.0.0",
+  "description": "This code is the backend of a new project on my portfolio page. It will aggregate jokes and match them to key words supplied by the user.",
+  "main": "modules.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21"
+  }
+}
