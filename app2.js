@@ -1,47 +1,75 @@
 // const express = require("express");
 // const app = express();
 // const fs = require("fs");
+// const mongoose = require("mongoose");
+// const Jokes = require("./models/jokes");
+
+// //connect to mongodb
+// const dbURI =
+//   "mongodb+srv://jokeuser:Chair2376man@cluster0.kau4c4u.mongodb.net/jokes-node?retryWrites=true&w=majority";
+
+// mongoose
+//   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then((result) => {
+//     console.log("connected to db");
+//     app.listen(3000, () => {
+//       console.log("Server is running on port 3000");
+//     });
+//   })
+//   .catch((err) => console.log(err));
 
 // // register view engine
 // // This tells the app to look into the views folder to find the ejs files.
 // app.set("view engine", "ejs");
 
-// const getFile = function (path, res) {
-//   fs.readFile(path, (err, data) => {
-//     if (err) {
-//       console.log(err);
-//       res.end();
-//     } else {
-//       res.send(data.toString());
-//     }
+// // mongoose and mongo sandbox routes
+// app.get("/add-blog", (req, res) => {
+//   const jokes = new Jokes({
+//     title: "Chicken joke",
+//     body: "Why does the chicken cross the road",
 //   });
-// };
 
-// app.listen(3000, () => {
-//   console.log("Server is running on port 3000");
+//   jokes
+//     .save()
+//     .then((result) => {
+//       res.send(result);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
+
+// app.get("/all-blog", (req, res) => {
+//   //use the model itself instead of an instance of the Joke model.
+//   Jokes.find()
+//     .then((result) => {
+//       res.send(result);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
 // });
 
 // app.get("/", (req, res) => {
-//   let path = "./views/index.html";
-//   getFile(path, res);
+//   const jokes = [
+//     { name: "Chickens", snippet: "Why does the chicken cross the road" },
+//     { name: "Ducks", snippet: "Why do the ducks cross the pond" },
+//     { name: "Antelope", snippet: "Why does the antelope cross the highway" },
+//   ];
+//   res.render("index", { jokes });
 // });
 
 // app.get("/about", (req, res) => {
-//   //This is another way to do it.
-//   res.sendFile("./views/about.html", { root: __dirname });
+//   // console.log(newJoke);
+//   res.render("about");
 // });
 
-// app.get("/aboutme", (req, res) => {
-//   res.redirect("/about");
+// app.get("/jokes/seed", (req, res) => {
+//   res.render("jokes", {
+//     message: "welcome to jokes page. I am testing passing values into the html",
+//   });
 // });
 
-// app.get("*", (req, res) => {
-//   let path = "./views/404.html";
-//   getFile(path, res);
-// });
-
-// this is another way to do the 404 response. Express reaches this point and fires this function if nobody else picks it
-// up from above.
 // app.use((req, res) => {
 //   res.status(404).sendFile("./views/404.html", { root: __dirname });
 // });
